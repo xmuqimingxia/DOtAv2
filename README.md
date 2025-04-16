@@ -16,7 +16,7 @@ Please check [website](https://research.seas.ucla.edu/mobility-lab/v2v4real/) to
 To see more details of OPV2V data, please check [website.](https://mobility-lab.seas.ucla.edu/opv2v/)
 
 
-
+###  Preliminary Label Generation
 * train detector only with communication info
 ```shell script
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2  --use_env opencood/tools/train.py --hypes_yaml hypes_yaml/point_pillar_intermediate_fusion_label_free.yaml
@@ -27,6 +27,7 @@ CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2  
 python opencood/tools/inference.py --model_dir ${INITIAL_DETECTOR_CHECKPOINT_FOLDER} --fusion_method intermediate --pseudo_lable_save 0
 ```
 
+### Multi-scale Bounding-box Encoding for Label Filtering（MBE）
 * filter pseudo-label
 ```shell script
 python opencood/tools/MBE.py
@@ -34,7 +35,7 @@ python opencood/tools/MBE.py
 ```shell script
 python opencood/tools/box_score_for_mbe.py
 ```
-
+### Training
 * use pseudo-label for training
 ```shell script
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2  --use_env opencood/tools/train.py --hypes_yaml /mnt/32THHD/lwk/codes/OpenCOOD/opencood/hypes_yaml/point_pillar_intermediate_fusion_dota.yaml
