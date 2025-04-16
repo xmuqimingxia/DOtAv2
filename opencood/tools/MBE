@@ -82,7 +82,7 @@ def rotate_points_along_z(points, angle):
 
 def get_registration_angle(mat):
     cos_theta, sin_theta = mat[0, 0], mat[1, 0]
-    cos_theta = np.clip(cos_theta, -1, 1)  # 限制cos_theta在-1到1之间
+    cos_theta = np.clip(cos_theta, -1, 1)  
     theta_cos = np.arccos(cos_theta)
     return theta_cos if sin_theta >= 0 else 2 * np.pi - theta_cos
 
@@ -335,23 +335,18 @@ def load_yaml(file, opt=None):
     return param
 
 def return_pl_frome_single_scenario(count, node_timestamp_lsit):
-    '''
-
-    :param scenario_folder: 选的是哪个场景
-    :param node_timestamp: 该场景的起始帧号
-    :return:
-    '''
+  
     path = '/mnt/32THHD/xhe/datasets/OPV2V/train'
-    scenario_folders = sorted([os.path.join(path, x)  # 单个元素的例：.../OPV2V/train/2021_08_16_22_26_54，为一个场景
+    scenario_folders = sorted([os.path.join(path, x)  
                                for x in os.listdir(path) if
                                os.path.isdir(os.path.join(path, x))])
-    cav_list = sorted([x for x in os.listdir(scenario_folders[count])  # scenario_folder下每个文件夹都代表一辆车，如641，650，659；单个元素例：641
+    cav_list = sorted([x for x in os.listdir(scenario_folders[count]) 
                        if os.path.isdir(
             os.path.join(scenario_folders[count], x))])
     for cav_id in cav_list:
         cav_path = os.path.join(scenario_folders[count], cav_id)
         yaml_files = \
-            sorted([os.path.join(cav_path, x)  # 例：将...\OPV2V\train\2021_08_16_22_26_54\641下'000069.yaml'这样的文件路径升序排序
+            sorted([os.path.join(cav_path, x)  
                     for x in os.listdir(cav_path) if
                     x.endswith('.yaml') and 'additional' not in x])
         break
@@ -361,31 +356,21 @@ def return_pl_frome_single_scenario(count, node_timestamp_lsit):
     cur_timestamps = node_timestamp_lsit[count] 
     node_timestamp= node_timestamp_lsit[count+1] 
 
-    # print("node_timestamp_lsit: ", node_timestamp_lsit)
-    # print("cur_timestamps: ", cur_timestamps)
+   
     multi_agent_point = np.load(f'/mnt/32THHD/lwk/datas/OPV2V/multi_agent_point_remove_ground/multi_agent_point{count}.npy',
                                 allow_pickle=True)
     poses = np.load(f'/mnt/32THHD/lwk/datas/OPV2V/multi_agent_point_pose/multi_agent_point_pose{count}.npy',
                     allow_pickle=True)
 
     for num_timestamp in tqdm(range(cur_timestamps, node_timestamp)): #tqdm(range(node_timestamp-len(timestamps), node_timestamp))
-        # if count == 0:
-        #     continue  
-        # file_path =  f'/mnt/32THHD/lwk/datas/OPV2V/out_xqm/out_pseduo_labels_v1_{num_timestamp}.npy'
-        # if os.path.exists(file_path):
-        #     continue
+        
 
             
         pseduo_labels = np.load(f'/mnt/32THHD/lwk/codes/OpenCOOD/pseduo_label_moma_1/pre_{num_timestamp}.npy')
-        # gt = np.load(f'F:\\OPV2V\\OPV2V\\gt_box\\gt_{num_timestamp}.npy')
-        # pseduo_labels = gt.copy()
+       
         pseduo_labels_ = pseduo_labels.copy()
 
-        # gtbox_center = gt[:, :3].copy()
-        # gtbox_center_new = pc_2_world(gtbox_center, poses[0][num_timestamp - node_timestamp + len(timestamps)])
-        # gtdif_ang = get_registration_angle(x_to_world(poses[0][num_timestamp - node_timestamp + len(timestamps)]))
-        # gt[:, :3] = gtbox_center_new[:, :3]
-        # gt[:, 6] = gt[:, 6] + gtdif_ang
+       
 
         box_center = pseduo_labels[:, :3].copy()
         box_center_new = pc_2_world(box_center, poses[0][num_timestamp - cur_timestamps])
@@ -414,16 +399,13 @@ import itertools
 
 if __name__ == '__main__':
 
-    # vi = Viewer()
 
     path = "/mnt/32THHD/xhe/datasets/OPV2V/train"
 
-    # print(os.listdir(path))
     scenario_folders = sorted([os.path.join(path, x)  # 单个元素的例：.../OPV2V/train/2021_08_16_22_26_54，为一个场景
                                for x in os.listdir(path) if
                                os.path.isdir(os.path.join(path, x))])
     count = 0
-    # node_timestamp = 0
     node_timestamp_lsit = []
     for scenario_folder in tqdm(scenario_folders):
         cav_list = sorted([x for x in os.listdir(scenario_folder)  # scenario_folder下每个文件夹都代表一辆车，如641，650，659；单个元素例：641
@@ -452,7 +434,6 @@ if __name__ == '__main__':
     for num in range(len(node_timestamp_lsit)):
         current_sum += node_timestamp_lsit[num]
         new_list.append(current_sum) 
-    # return_pl_frome_single_scenario(count, node_timestamp_lsit)
 
     sample_sequence_file_list = [i for i in range(43)]
 
