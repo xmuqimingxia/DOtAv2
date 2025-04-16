@@ -57,6 +57,20 @@ Arguments Explanation:
 
 The evaluation results  will be dumped in the model directory. 
 
+## Citation
+If you find this project useful in your research, please consider cite:
+```
+@article{xia2025learning,
+  title={Learning to Detect Objects from Multi-Agent LiDAR Scans without Manual Labels},
+  author={Xia, Qiming and Lin, Wenkai and Xiang, Haoen and Huang, Xun and Chen, Siheng and Dong, Zhen and Wang, Cheng and Wen, Chenglu},
+  journal={arXiv preprint arXiv:2503.08421},
+  year={2025}
+}
+```
+
+## Acknowledgement
+This code is based on [OpenCOOD](https://github.com/DerrickXuNu/OpenCOOD),[V2V4Real](https://github.com/ucla-mobility/V2V4Real)
+If you find some help for you, star is a good reward ^_^.
 
 
 
