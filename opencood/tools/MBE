@@ -1,5 +1,4 @@
 import time
-# from viewer.viewer import Viewer
 import os
 import open3d as o3d
 import numpy as np
@@ -96,18 +95,14 @@ def remove_ground_points(point_cloud, max_iterations=100, distance_threshold=0.2
     non_ground_points = []
 
     for _ in range(max_iterations):
-        # 随机选择三个点作为地面模型的候选点
         indices = np.random.choice(len(point_cloud), 3, replace=False)
         candidate_points = point_cloud[indices]
 
-        # 拟合地面模型
         model = linear_model.RANSACRegressor()
         model.fit(candidate_points[:, :2], candidate_points[:, 2])
 
-        # 计算所有点到地面模型的垂直距离
         distances = np.abs(model.predict(point_cloud[:, :2]) - point_cloud[:, 2])
 
-        # 判断当前地面模型是否合理
         if np.sum(distances < distance_threshold) > len(ground_points):
             ground_points = point_cloud[distances < distance_threshold]
             non_ground_points = point_cloud[distances >= distance_threshold]
