@@ -26,7 +26,7 @@ python opencood/tools/box_score_for_mvsta.py
 
 * use pseudo-label for training
 ```shell script
-CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2  --use_env opencood/tools/train.py --hypes_yaml /mnt/32THHD/lwk/codes/OpenCOOD/opencood/hypes_yaml/point_pillar_intermediate_fusion_moma.yaml
+CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2  --use_env opencood/tools/train.py --hypes_yaml /mnt/32THHD/lwk/codes/OpenCOOD/opencood/hypes_yaml/point_pillar_intermediate_fusion_dota.yaml
 ```
 
 ### Test the model
