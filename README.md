@@ -21,7 +21,7 @@ python opencood/tools/inference.py --model_dir ${INITIAL_DETECTOR_CHECKPOINT_FOL
 python opencood/tools/MBE.py
 ```
 ```shell script
-python opencood/tools/box_score_for_mvsta.py
+python opencood/tools/box_score_for_mbe.py
 ```
 
 * use pseudo-label for training
