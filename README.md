@@ -6,6 +6,22 @@ This is a official code release of [DoTA](https://arxiv.org/abs/2503.08421) (Lea
 ![1744802587673](https://github.com/user-attachments/assets/56aa59e3-4403-4722-ba1f-bc1bf222b021)
 
 ## Getting Started
+### Installation
+Please refer to [data introduction](https://opencood.readthedocs.io/en/latest/md_files/data_intro.html)
+and [installation](https://opencood.readthedocs.io/en/latest/md_files/installation.html) guide to prepare
+data and install OpenCOOD. To see more details of OPV2V data, please check [our website.](https://mobility-lab.seas.ucla.edu/opv2v/)
+
+Please check [website](https://research.seas.ucla.edu/mobility-lab/v2v4real/) to download the V2V4Real (OPV2V format).
+After downloading the data, please put the data in the following structure:
+```shell
+├── v2v4real
+│   ├── train
+|      |── testoutput_CAV_data_2022-03-15-09-54-40_1
+│   ├── validate
+│   ├── test
+```
+
+
 * train detector only with communication info
 ```shell script
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2  --use_env opencood/tools/train.py --hypes_yaml hypes_yaml/point_pillar_intermediate_fusion_label_free.yaml
