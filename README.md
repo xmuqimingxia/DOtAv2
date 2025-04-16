@@ -9,9 +9,9 @@ This is a official code release of [DoTA](https://arxiv.org/abs/2503.08421) (Lea
 ### Installation
 Please refer to [data introduction](https://opencood.readthedocs.io/en/latest/md_files/data_intro.html)
 and [installation](https://opencood.readthedocs.io/en/latest/md_files/installation.html) guide to prepare
-OPV2V and install OpenCOOD. To see more details of OPV2V data, please check [our website.](https://mobility-lab.seas.ucla.edu/opv2v/)
-
+OPV2V and install OpenCOOD. 
 Please check [website](https://research.seas.ucla.edu/mobility-lab/v2v4real/) to download the V2V4Real (OPV2V format).
+To see more details of OPV2V data, please check [website.](https://mobility-lab.seas.ucla.edu/opv2v/)
 
 
 
