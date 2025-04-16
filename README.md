@@ -18,7 +18,7 @@ python opencood/tools/inference.py --model_dir ${INITIAL_DETECTOR_CHECKPOINT_FOL
 
 * filter pseudo-label
 ```shell script
-python opencood/tools/mvsta_multiprocess.py
+python opencood/tools/MBE.py
 ```
 ```shell script
 python opencood/tools/box_score_for_mvsta.py
