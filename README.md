@@ -1,7 +1,11 @@
-# DOtA
+# Learning to Detect Objects from Multi-Agent LiDAR Scans without Manual Labels
 
 This is a official code release of [DoTA](https://arxiv.org/abs/2503.08421) (Learning to Detect Objects from Multi-Agent LiDAR Scans without Manual Labels). 
 
+## Detection Framework
+![1744802587673](https://github.com/user-attachments/assets/56aa59e3-4403-4722-ba1f-bc1bf222b021)
+
+## Getting Started
 * train detector only with communication info
 ```shell script
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2  --use_env opencood/tools/train.py --hypes_yaml hypes_yaml/point_pillar_intermediate_fusion_label_free.yaml
