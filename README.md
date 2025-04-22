@@ -1,4 +1,4 @@
-# Learning to Detect Objects from Multi-Agent LiDAR Scans without Manual Labels
+# DOtA++ & DOtA : Learning to Detect Objects from Multi-Agent LiDAR Scans without Manual Labels
 
 This is a official code release of DOtA++ and [DOtA](https://arxiv.org/abs/2503.08421) (Learning to Detect Objects from Multi-Agent LiDAR Scans without Manual Labels). 
 
