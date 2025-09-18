@@ -356,11 +356,38 @@ def return_pl_frome_single_scenario(count, node_timestamp_lsit):
     cur_timestamps = node_timestamp_lsit[count] 
     node_timestamp= node_timestamp_lsit[count+1] 
 
+    multi_agent_point = []
+    poses = []
+    yaml_file_list = []
+    for cav_id in cav_list:
+        # if count == 0:
+        #     continue
+        cav_path = os.path.join(scenario_folder, cav_id)
+        single_agent_point = []
+        pose = []
+        yaml_file_name_list = []
+        for timestamp in timestamps:
+            pcd_file_name = timestamp + ".pcd"
+            point_path = os.path.join(cav_path, pcd_file_name)
+            points_local = pcd_to_np(point_path)
+    
+            yaml_file_name = timestamp + ".yaml"
+            yaml_path = os.path.join(cav_path, yaml_file_name)
+            lidar_pose = load_yaml(yaml_path)['lidar_pose']
+    
+    
+            points_gloabal = pc_2_world(points_local, lidar_pose)
+            points_gloabal_ = remove_ground_points(points_gloabal)
+            single_agent_point.append(points_gloabal_)
+            pose.append(lidar_pose)
+            yaml_file_name_list.append(yaml_path)
+    
+        poses.append(pose)
+        yaml_file_list.append(yaml_file_name_list)
+    
+        single_agent_points = np.concatenate(single_agent_point, axis=0)
+        multi_agent_point.append(single_agent_point)
    
-    multi_agent_point = np.load(f'/mnt/32THHD/lwk/datas/OPV2V/multi_agent_point_remove_ground/multi_agent_point{count}.npy',
-                                allow_pickle=True)
-    poses = np.load(f'/mnt/32THHD/lwk/datas/OPV2V/multi_agent_point_pose/multi_agent_point_pose{count}.npy',
-                    allow_pickle=True)
 
     for num_timestamp in tqdm(range(cur_timestamps, node_timestamp)): #tqdm(range(node_timestamp-len(timestamps), node_timestamp))
         
