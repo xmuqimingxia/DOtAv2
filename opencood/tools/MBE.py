@@ -411,7 +411,7 @@ def return_pl_frome_single_scenario(count, node_timestamp_lsit):
             ok.append(np.array(poses[m][num_timestamp - cur_timestamps])[:3].reshape(1, 3))
 
         now_timestamp = num_timestamp - cur_timestamps
-        out_pseduo_labels = box_filter_plus(pseduo_labels, multi_agent_point, ok, now_timestamp)
+        out_pseduo_labels = box_filter(pseduo_labels, multi_agent_point, ok, now_timestamp)
 
         inverted_list = [not x for x in out_pseduo_labels]
 
