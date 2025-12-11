@@ -1,6 +1,6 @@
 name: point_pillar_intermediate_fusion
 root_dir: '/mnt/32THHD/xhe/datasets/OPV2V/train'
-validate_dir: '/mnt/32THHD/xhe/datasets/OPV2V/validate'
+validate_dir: '/mnt/32THHD/xhe/datasets/OPV2V/train'
 
 yaml_parser: "load_point_pillar_params"
 train_params:
